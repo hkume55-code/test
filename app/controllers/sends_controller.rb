@@ -69,6 +69,6 @@ class SendsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def send_params
-      params.require(:send).permit(:subject, :message, :email, :sender, :sendtime)
+      params.require(:send).permit(:email, :name, :tracking_code, :send_flag)
     end
 end

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>メール文面</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Message</th>
+      <th>SendrEmail</th>
+      <th>SenderName</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mail_templates.each do |mail_template| %>
+      <tr>
+        <td><%= mail_template.subject %></td>
+        <td><%= mail_template.message %></td>
+        <td><%= mail_template.sender_email %></td>
+        <td><%= mail_template.sender_name %></td>
+        <td><%= link_to 'Show', mail_template %></td>
+        <td><%= link_to 'Edit', edit_mail_template_path(mail_template) %></td>
+        <td><%= link_to 'Destroy', mail_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Send', send_email_mail_template_path(mail_template) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mail Template', new_mail_template_path %>
+<%= link_to 'Dashboard', dashboards_path %>

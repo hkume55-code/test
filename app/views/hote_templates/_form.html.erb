@@ -1,0 +1,17 @@
+<%= form_with(model: hote_template, local: true) do |form| %>
+  <% if hote_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hote_template.errors.count, "error") %> prohibited this hote_template from being saved:</h2>
+
+      <ul>
+      <% hote_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,10 +1,10 @@
-<%= form_with(model: send, local: true) do |form| %>
-  <% if send.errors.any? %>
+<%= form_with(model: @send) do |form| %>
+  <% if @send.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(send.errors.count, "error") %> prohibited this send from being saved:</h2>
+      <h2><%= pluralize(@send.errors.count, "error") %> prohibited this @send from being saved:</h2>
 
       <ul>
-      <% send.errors.full_messages.each do |message| %>
+      <% @send.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,28 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :subject %>
-    <%= form.text_field :subject %>
-  </div>
-
-  <div class="field">
-    <%= form.label :message %>
-    <%= form.text_area :message %>
-  </div>
-
-  <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
 
   <div class="field">
-    <%= form.label :sender %>
-    <%= form.text_field :sender %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :sendtime %>
-    <%= form.datetime_select :sendtime %>
+    <%= form.label :tracking_code %>
+    <%= form.text_field :tracking_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :send_flag %>
+    <%= form.check_box :send_flag %>
   </div>
 
   <div class="actions">

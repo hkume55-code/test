@@ -1,28 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Subject:</strong>
-  <%= @send.subject %>
-</p>
-
-<p>
-  <strong>Message:</strong>
-  <%= @send.message %>
-</p>
-
-<p>
   <strong>Email:</strong>
   <%= @send.email %>
 </p>
 
 <p>
-  <strong>Sender:</strong>
-  <%= @send.sender %>
+  <strong>Name:</strong>
+  <%= @send.name %>
 </p>
 
 <p>
-  <strong>Sendtime:</strong>
-  <%= @send.sendtime %>
+  <strong>TrackingCode:</strong>
+  <%= @send.tracking_code %>
+</p>
+
+<p>
+  <strong>SendFlag:</strong>
+  <%= @send.send_flag %>
+</p>
+
+<p>
+  <strong>SendAt:</strong>
+  <%= @send.send_at %>
 </p>
 
 <%= link_to 'Edit', edit_send_path(@send) %> |

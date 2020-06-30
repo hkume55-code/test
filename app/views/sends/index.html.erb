@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Sends</h1>
+<h1>送信リスト</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Subject</th>
-      <th>Message</th>
       <th>Email</th>
-      <th>Sender</th>
-      <th>Sendtime</th>
+      <th>Name</th>
+      <th>TrackingCode</th>
+      <th>SendFlag</th>
+      <th>SendAt</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,15 +17,14 @@
   <tbody>
     <% @sends.each do |send| %>
       <tr>
-        <td><%= send.subject %></td>
-        <td><%= send.message %></td>
         <td><%= send.email %></td>
-        <td><%= send.sender %></td>
-        <td><%= send.sendtime %></td>
+        <td><%= send.name %></td>
+        <td><%= send.tracking_code %></td>
+        <td><%= send.send_flag %></td>
+        <td><%= send.send_at %></td>
         <td><%= link_to 'Show', send %></td>
         <td><%= link_to 'Edit', edit_send_path(send) %></td>
         <td><%= link_to 'Destroy', send, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Send', send_email_send_path(send) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,3 +33,4 @@
 <br>
 
 <%= link_to 'New Send', new_send_path %>
+<%= link_to 'Dashboard', dashboards_path %>
