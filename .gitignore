@@ -36,3 +36,8 @@ doc/
 .DS_Store
 .idea
 .secret
+
+# settings
+/config/settings
+/config/environments
+/config/application.rb

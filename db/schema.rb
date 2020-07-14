@@ -10,24 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_075037) do
+ActiveRecord::Schema.define(version: 2020_06_22_044657) do
 
-  create_table "mails", force: :cascade do |t|
-    t.string "mail_subject"
-    t.text "mail_message"
-    t.string "mail_to_email"
-    t.string "mail_from_email"
-    t.datetime "send_datetime"
+  create_table "mail_templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "subject"
+    t.text "message"
+    t.text "message_html"
+    t.string "sender_email"
+    t.string "sender_name"
+    t.string "reply_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "sends", force: :cascade do |t|
-    t.string "subject"
-    t.text "message"
+  create_table "sends", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email"
-    t.string "sender"
-    t.datetime "sendtime"
+    t.string "name"
+    t.string "tracking_code"
+    t.boolean "send_flag"
+    t.datetime "send_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

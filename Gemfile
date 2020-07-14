@@ -7,12 +7,7 @@ ruby '2.6.6'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
-group :development, :test do
-  gem 'sqlite3' #do ~ end“à•”‚É’Ç‰ÁB‘¼‚Ìgem‚ÍŽc‚µ‚Ä‚­‚¾‚³‚¢B
-end
-group :production do
-  gem 'pg'
-end
+gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -61,3 +56,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# SendGrid
+gem 'sendgrid-ruby'

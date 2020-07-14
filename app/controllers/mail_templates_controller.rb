@@ -64,7 +64,8 @@ class MailTemplatesController < ApplicationController
   # send_email /mail_templates/1
   # send_email /mail_templates/1.json
   def send_email
-    sendgrid = SendgridConcern.broadcast_xsmtp(@mail_template)
+    #sendmail = SendMailsConcern::SendMails.new(@mail_template)
+    #sendmail.deliver
     respond_to do |format|
       format.html { redirect_to mail_templates_url, notice: 'Mail Send Complete.' }
       format.json { head :no_content }
