@@ -40,4 +40,3 @@ doc/
 # settings
 /config/settings
 /config/environments
-/config/application.rb
