@@ -79,6 +79,9 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gridhook (0.2.0)
+      multi_json (>= 1.3.0)
+      rails (>= 3.1.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
@@ -97,6 +100,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     msgpack (1.3.3)
+    multi_json (1.15.0)
     mysql2 (0.5.3)
     nio4r (2.5.2)
     nokogiri (1.10.9)
@@ -191,6 +195,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   duktape
+  gridhook (= 0.2.0)
   jbuilder (~> 2.5)
   mysql2
   puma (~> 3.11)

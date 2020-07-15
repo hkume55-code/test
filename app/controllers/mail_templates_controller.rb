@@ -66,6 +66,11 @@ class MailTemplatesController < ApplicationController
   def send_email
     #sendmail = SendMailsConcern::SendMails.new(@mail_template)
     #sendmail.deliver
+    send_mail = SendMailsConcernNew::SendMails.new()
+    send_mail.set_mail_template_id(@mail_template.id)
+
+    send_result = send_mail.deliver
+Rails.logger.info("send_email result=#{send_result.inspect} mail_template_id:#{@mail_template.id}")
     respond_to do |format|
       format.html { redirect_to mail_templates_url, notice: 'Mail Send Complete.' }
       format.json { head :no_content }
@@ -80,6 +85,6 @@ class MailTemplatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def mail_template_params
-      params.require(:mail_template).permit(:subject, :message, :sender_email, :sender_name)
+      params.require(:mail_template).permit(:subject, :message, :message_html, :sender_email, :sender_name)
     end
 end
