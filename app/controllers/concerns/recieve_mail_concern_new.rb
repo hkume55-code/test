@@ -52,7 +52,7 @@ Rails.logger.info("sendgrid_event_process=============category=#{category.inspec
           error_time = Time.at(recieved_body["timestamp"].to_i)
           detail = recieved_body.inspect
 Rails.logger.info("sendgrid_event_process=============email=#{email.inspect}")
-Rails.logger.info("sendgrid_event_process=============reason=#{reason.inspect}")
+Rails.logger.info("sendgrid_event_process=============reply_text=#{rreply_text.inspect}")
 Rails.logger.info("sendgrid_event_process=============reply_code=#{reply_code.inspect}")
 Rails.logger.info("sendgrid_event_process=============error_code=#{error_code.inspect}")
 Rails.logger.info("sendgrid_event_process=============error_time=#{error_time.inspect}")
@@ -85,7 +85,7 @@ Rails.logger.info("sendgrid_event_process=============org_symbol=#{detail.inspec
         end
         return true
       rescue => e
-        ExceptionConcern.output_log(e)
+        Rails.logger.debug(e.inspect)
         return false
       end
     end
