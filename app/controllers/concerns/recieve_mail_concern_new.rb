@@ -58,7 +58,7 @@ Rails.logger.info("bounce/dropped=============detail=#{detail.inspect}")
           if recieved_body.key?("X-IADMM") then
             org_symbol = recieved_body["X-IADMM"].split('.')
           end
-Rails.logger.info("bounce/dropped=============org_symbol=#{detail.inspect}")
+Rails.logger.info("bounce/dropped=============org_symbol=#{org_symbol.inspect}")
 
         when :open # 開封イベント
           # 基本情報収集
@@ -70,7 +70,7 @@ Rails.logger.info("open=============mail_open_datetime=#{mail_open_datetime.insp
           if recieved_body.key?("X-IADMM") then
             org_symbol = recieved_body["X-IADMM"].split('.')
           end
-Rails.logger.info("open=============org_symbol=#{detail.inspect}")
+Rails.logger.info("open=============org_symbol=#{org_symbol.inspect}")
 
         else
           # bounceとdroppes,open以外を受け取った場合
