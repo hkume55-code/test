@@ -28,12 +28,10 @@ module RecieveMailConcernNew
     def sendgrid_event_process
       begin
         recieved_body = @event.attributes
-Rails.logger.info("sendgrid_event_process=============recieved_body=#{recieved_body.inspect}")
 
         event = recieved_body["event"].to_sym
         category =  recieved_body["category"]
-Rails.logger.info("sendgrid_event_process=============event=#{event.inspect}")
-Rails.logger.info("sendgrid_event_process=============category=#{category.inspect}")
+Rails.logger.info("sendgrid_event_process=============event=#{event.inspect} category=#{category.inspect}")
         case event
         when :bounce, :dropped
           # 基本情報収集
@@ -51,37 +49,33 @@ Rails.logger.info("sendgrid_event_process=============category=#{category.inspec
           end
           error_time = Time.at(recieved_body["timestamp"].to_i)
           detail = recieved_body.inspect
-Rails.logger.info("sendgrid_event_process=============email=#{email.inspect}")
-Rails.logger.info("sendgrid_event_process=============reply_text=#{rreply_text.inspect}")
-Rails.logger.info("sendgrid_event_process=============reply_code=#{reply_code.inspect}")
-Rails.logger.info("sendgrid_event_process=============error_code=#{error_code.inspect}")
-Rails.logger.info("sendgrid_event_process=============error_time=#{error_time.inspect}")
-Rails.logger.info("sendgrid_event_process=============detail=#{detail.inspect}")
+Rails.logger.info("bounce/dropped=============email=#{email.inspect} reply_text=#{reply_text.inspect} reply_code=#{reply_code.inspect}")
+Rails.logger.info("bounce/dropped=============error_code=#{error_code.inspect} error_time=#{error_time.inspect}")
+Rails.logger.info("bounce/dropped=============detail=#{detail.inspect}")
 
           # 付加情報収集
           org_symbol = Array.new
           if recieved_body.key?("X-IADMM") then
             org_symbol = recieved_body["X-IADMM"].split('.')
           end
-Rails.logger.info("sendgrid_event_process=============org_symbol=#{detail.inspect}")
+Rails.logger.info("bounce/dropped=============org_symbol=#{detail.inspect}")
 
         when :open # 開封イベント
           # 基本情報収集
           email              = recieved_body["email"]
           mail_open_datetime = Time.at(recieved_body["timestamp"].to_i)
-Rails.logger.info("sendgrid_event_process=============email=#{email.inspect}")
-Rails.logger.info("sendgrid_event_process=============mail_open_datetime=#{mail_open_datetime.inspect}")
+Rails.logger.info("open=============email=#{email.inspect}")
+Rails.logger.info("open=============mail_open_datetime=#{mail_open_datetime.inspect}")
 
           # 付加情報収集
           org_symbol = Array.new
           if recieved_body.key?("X-IADMM") then
             org_symbol = recieved_body["X-IADMM"].split('.')
           end
-Rails.logger.info("sendgrid_event_process=============org_symbol=#{detail.inspect}")
+Rails.logger.info("open=============org_symbol=#{detail.inspect}")
 
         else
           # bounceとdroppes,open以外を受け取った場合
-          Rails.logger.info("===sengrid_event_process: invalid event")
         end
         return true
       rescue => e
