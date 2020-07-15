@@ -29,13 +29,13 @@ module RecieveMailConcernNew
       begin
         recieved_body = @event.attributes
 
-        event = recieved_body["event"].to_sym
-        category =  recieved_body["category"]
-Rails.logger.info("sendgrid_event_process=============event=#{event.inspect} category=#{category.inspect}")
+        event    = recieved_body["event"].to_sym
+        category = recieved_body["category"]
+        email    = recieved_body["email"]
+Rails.logger.info("sendgrid_event_process=============event=#{event.inspect} category=#{category.inspect} email=#{email.inspect}")
         case event
         when :bounce, :dropped
           # 基本情報収集
-          email = recieved_body["email"]
           reply_text =recieved_body["reason"]
           if event == :bounce then
             reply_code = reply_text[0,3].to_i
@@ -49,7 +49,7 @@ Rails.logger.info("sendgrid_event_process=============event=#{event.inspect} cat
           end
           error_time = Time.at(recieved_body["timestamp"].to_i)
           detail = recieved_body.inspect
-Rails.logger.info("bounce/dropped=============email=#{email.inspect} reply_text=#{reply_text.inspect} reply_code=#{reply_code.inspect}")
+Rails.logger.info("bounce/dropped=============reply_text=#{reply_text.inspect} reply_code=#{reply_code.inspect}")
 Rails.logger.info("bounce/dropped=============error_code=#{error_code.inspect} error_time=#{error_time.inspect}")
 Rails.logger.info("bounce/dropped=============detail=#{detail.inspect}")
 
@@ -62,9 +62,7 @@ Rails.logger.info("bounce/dropped=============org_symbol=#{detail.inspect}")
 
         when :open # 開封イベント
           # 基本情報収集
-          email              = recieved_body["email"]
           mail_open_datetime = Time.at(recieved_body["timestamp"].to_i)
-Rails.logger.info("open=============email=#{email.inspect}")
 Rails.logger.info("open=============mail_open_datetime=#{mail_open_datetime.inspect}")
 
           # 付加情報収集
